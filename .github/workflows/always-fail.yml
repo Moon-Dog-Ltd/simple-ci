@@ -1,0 +1,18 @@
+name: Always Fail on Pull Request
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  always-fail:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Print message
+        run: echo "This job will always fail."
+
+      - name: Fail intentionally
+        run: exit 1
